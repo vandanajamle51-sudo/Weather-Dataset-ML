@@ -1,4 +1,4 @@
-import pandas as pd
+import statistics
 
 data = {
     "Temperature": [25, 28, 30, 22, 27, 31, 24, 29],
@@ -7,16 +7,15 @@ data = {
     "Weather": ["Sunny", "Sunny", "Sunny", "Rainy", "Cloudy", "Sunny", "Rainy", "Cloudy"]
 }
 
-df = pd.DataFrame(data)
-
 print("Weather Dataset")
-print(df)
+for i in range(len(data["Temperature"])):
+    print(data["Temperature"][i], data["Humidity"][i],
+          data["Wind_Speed"][i], data["Weather"][i])
 
-print("\nDataset Information")
-print(df.info())
-
-print("\nStatistical Summary")
-print(df.describe())
+print("\nAverage Temperature:", statistics.mean(data["Temperature"]))
+print("Average Humidity:", statistics.mean(data["Humidity"]))
+print("Average Wind Speed:", statistics.mean(data["Wind_Speed"]))
 
 print("\nWeather Distribution")
-print(df["Weather"].value_counts())
+for condition in set(data["Weather"]):
+    print(condition, ":", data["Weather"].count(condition))
